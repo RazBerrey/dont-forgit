@@ -1,0 +1,4 @@
+clock requirements - count down from 25 when start is clicked
+each time start is clicked, upon reaching 0 cheange image 1,2,3,or 4 to a checkbox
+when image 1, 2, or 3 is changed, alert 5 min break
+when image 4 is changed bring up alert 25 minute break
