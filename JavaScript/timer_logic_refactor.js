@@ -36,14 +36,12 @@ function timerStop(){
     clearInterval(intervalSet);
     document.getElementById("timer").innerHTML = "Time's Up";
 }
-var displayMin = minuteFactory(timerRunning());
-var displaySec = secondFactory(timerRunning())
-
 function countDownRunning(){
+    debugger;
     rightNowGet(); //get right now value
     timerRunning(); // get right now minus timertil value
-    minuteFactory(timerRunning()); //return minute value of distance
-    secondFactory(timerRunning()); //return second value of distance
+    var displayMin = minuteFactory(timerRunning()); //return minute value of distance
+    var displaySec = secondFactory(timerRunning()); //return second value of distance
     displayCounter(displayMin, displaySec); //push value to html
 }
 
