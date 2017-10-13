@@ -4,7 +4,8 @@ var timerTil = 0
 var rightNow = 0
 var minutes = 0
 var seconds = 0
-
+var inputDistance = 1500000
+debugger;
 function minuteFactory(timeToFactorM){
     return Math.floor((timeToFactorM % (1000*60*60)) / (1000*60));
 }
@@ -14,7 +15,7 @@ function secondFactory(timeToFactorS){
 }
 
 function timeTilCounter(){
-    timerTil = new Date().getTime()+1500000;
+    timerTil = new Date().getTime()+inputDistance;
     return timerTil;
 }
 
@@ -31,23 +32,27 @@ function timerRunning(){
     return timerTil - rightNow;
 }
 
-function timerStop(){
-    clearInterval(intervalSet);
+function timerStop(intervalToKill){
+    clearInterval(intervalToKill);
     document.getElementById("timer").innerHTML = "Time's Up";
 }
 function countDownRunning(){
     debugger;
     rightNowGet(); 
-    var distance = timerRunning(); 
     var displayMin = minuteFactory(timerRunning()); 
     var displaySec = secondFactory(timerRunning()); 
     displayCounter(displayMin, displaySec); 
 }
 
-document.getElementById("start").onclick = function(){
+document.getElementById("start").onclick = function startUp(){
 timeTilCounter(); 
 var intervalSet = setInterval(function(){
-    countDownRunning()
+    var distance = timerRunning()
+    if (distance > 0){
+        countDownRunning()
+    } else {
+        timerStop(intervalSet)
+    }
 },1000)
 };
 }
