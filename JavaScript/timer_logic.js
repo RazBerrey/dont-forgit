@@ -50,7 +50,7 @@ timeTilCounter();
 
 var intervalSet = setInterval(function(){
     var distance = timerRunning()
-    if (distance > 0){
+    if (distance > 1000){
         countDownRunning()
     } else {
         timerStop(intervalSet);
