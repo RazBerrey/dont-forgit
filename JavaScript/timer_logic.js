@@ -5,6 +5,7 @@ var rightNow = 0
 var minutes = 0
 var seconds = 0
 var inputDistance = 1500000
+var pomodorosPassed = 0
 debugger;
 function minuteFactory(timeToFactorM){
     return Math.floor((timeToFactorM % (1000*60*60)) / (1000*60));
@@ -46,13 +47,34 @@ function countDownRunning(){
 
 document.getElementById("start").onclick = function startUp(){
 timeTilCounter(); 
+
 var intervalSet = setInterval(function(){
     var distance = timerRunning()
     if (distance > 0){
         countDownRunning()
     } else {
-        timerStop(intervalSet)
+        timerStop(intervalSet);
+        countPomodoros();
+        checkBoxUpdate(pomodorosPassed)
     }
 },1000)
 };
+
+function checkBoxUpdate(pomodorosPassed) {
+    if (pomodorosPassed < 4) {
+    var pomodorosPassedStringValue = pomodorosPassed.toString()
+    document.getElementById(`checkBox${pomodorosPassedStringValue}`).checked = true;
+} else {
+    document.getElementById(`checkBox1`).checked = false
+    document.getElementById(`checkBox2`).checked = false
+    document.getElementById(`checkBox3`).checked = false
+}
+}
+function countPomodoros() {
+    if (pomodorosPassed < 4) {
+        pomodorosPassed++
+    } else {
+        pomodorosPassed = 0
+    }
+}
 }
